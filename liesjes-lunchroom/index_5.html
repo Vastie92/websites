@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liesjes Lunchroom | Winsum</title>
+<meta name="description" content="Liesjes Lunchroom bij Wasstraat Winsum — verse broodjes, warme snacks en huisgemaakte lekkernijen. Het Aanleg 4, Winsum.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#C4222E;
+    --red-dark:#9E1A25;
+    --ink:#171310;
+    --cream:#F3EEE6;
+    --cream-2:#EAE3D6;
+    --white:#FFFFFF;
+    --gold:#F0AC1B;
+    --line:rgba(23,19,16,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Poppins',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:64px; /* room for sticky mobile CTA */
+  }
+  h1,h2,h3{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    margin:0;
+    line-height:1.05;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px;}
+  section{position:relative;}
+
+  .eyebrow{
+    text-transform:uppercase;font-weight:700;letter-spacing:0.12em;font-size:0.78rem;
+  }
+
+  /* Buttons -- pill, uppercase, letter-spaced, matching guideline */
+  .pill{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:15px 30px;border-radius:999px;
+    font-weight:700;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.08em;
+    white-space:nowrap;transition:transform .12s ease, background .15s ease;
+  }
+  .pill:hover{transform:translateY(-1px);}
+  .pill-red{background:var(--red);color:var(--white);}
+  .pill-red:hover{background:var(--red-dark);}
+  .pill-black{background:var(--ink);color:var(--white);}
+  .pill-black:hover{background:#000;}
+  .pill-outline{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.55);}
+  .pill-outline:hover{background:rgba(255,255,255,0.12);}
+  .pill-sm{padding:11px 22px;font-size:0.72rem;}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:60;
+    background:rgba(243,238,230,0.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;max-width:1160px;margin:0 auto;
+  }
+  .brand img{height:42px;width:auto;}
+  nav.links{display:flex;gap:30px;font-weight:600;font-size:0.88rem;}
+  nav.links a{color:var(--ink);opacity:0.75;transition:opacity .15s;}
+  nav.links a:hover{opacity:1;color:var(--red);}
+  @media (max-width:860px){ nav.links{display:none;} }
+
+  /* Hero -- off-white block, bold stacked headline left, circular photo right */
+  .hero{padding:64px 24px 76px;}
+  .hero-grid{
+    max-width:1160px;margin:0 auto;
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;
+  }
+  .hero h1{font-size:3.4rem;color:var(--ink);}
+  .hero h1 span{display:block;}
+  .hero .sub{margin-top:18px;font-size:1.12rem;color:var(--ink);opacity:0.72;max-width:36ch;font-weight:500;}
+  .hero .cta-row{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+  .hero-photo-wrap{display:flex;justify-content:center;}
+  .hero-photo{
+    width:min(420px,90vw);aspect-ratio:1/1;border-radius:50%;overflow:hidden;
+    border:3px solid var(--ink);box-shadow:0 0 0 10px var(--cream), 0 20px 40px rgba(23,19,16,0.18);
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;}
+
+  /* Story -- full-bleed split, red bg */
+  .story{background:var(--red);color:var(--white);}
+  .story-grid{
+    max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;align-items:stretch;
+  }
+  .story-photo{min-height:420px;background:var(--ink);}
+  .story-photo img{width:100%;height:100%;min-height:420px;object-fit:cover;}
+  .story-text{padding:64px 56px;display:flex;flex-direction:column;justify-content:center;}
+  .story-text .eyebrow{color:#F3C6C9;}
+  .story-text h2{font-size:2.3rem;color:var(--white);margin-top:12px;}
+  .story-text p{margin-top:18px;font-size:1.03rem;line-height:1.7;opacity:0.94;max-width:44ch;}
+  .story-text .pill{margin-top:26px;width:fit-content;}
+
+  /* Offer / featured teaser -- off-white, 3 cards */
+  .offer{padding:90px 24px;text-align:center;}
+  .offer .eyebrow{color:var(--red);}
+  .offer h2{font-size:2.2rem;margin-top:12px;}
+  .offer .lede{margin:14px auto 0;color:var(--ink);opacity:0.65;max-width:46ch;font-weight:500;}
+  .offer-cards{
+    margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
+    max-width:1000px;margin-left:auto;margin-right:auto;
+  }
+  .offer-card{
+    background:var(--white);border-radius:20px;padding:32px 22px 26px;
+    box-shadow:0 10px 30px rgba(23,19,16,0.06);
+  }
+  .offer-card .thumb{
+    width:104px;height:104px;border-radius:50%;overflow:hidden;margin:0 auto 18px;
+    background:var(--cream-2);display:flex;align-items:center;justify-content:center;
+  }
+  .offer-card .thumb img{width:100%;height:100%;object-fit:cover;}
+  .offer-card .thumb.textonly{font-family:'Poppins';font-weight:800;font-size:1.6rem;color:var(--red);}
+  .offer-card h3{font-size:0.95rem;text-transform:uppercase;letter-spacing:0.05em;font-weight:700;}
+  .offer-card p{margin-top:8px;font-size:0.85rem;color:var(--ink);opacity:0.6;font-weight:500;}
+  .offer > .pill{margin-top:48px;}
+
+  /* Full menu -- off-white/cream-2, cards */
+  .menu-section{background:var(--cream-2);padding:90px 24px;}
+  .menu-inner{max-width:1160px;margin:0 auto;}
+  .menu-section .section-head{text-align:center;margin-bottom:48px;}
+  .menu-section .eyebrow{color:var(--red);justify-content:center;display:flex;}
+  .menu-section h2{font-size:2.2rem;margin-top:12px;}
+  .menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px 50px;}
+  .menu-card{background:var(--white);border-radius:18px;padding:28px 30px;}
+  .menu-card h3{
+    font-size:1.02rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--red);
+    border-bottom:2px solid var(--cream-2);padding-bottom:12px;margin-bottom:14px;font-weight:700;
+  }
+  .menu-item{display:flex;justify-content:space-between;gap:14px;padding:7px 0;font-size:0.95rem;font-weight:500;}
+  .menu-item .name{color:var(--ink);}
+  .menu-item .price{color:var(--ink);opacity:0.55;font-weight:700;white-space:nowrap;}
+
+  /* Testimonials -- red bg */
+  .testimonials{background:var(--red);color:var(--white);padding:90px 24px;text-align:center;}
+  .testimonials .eyebrow{color:#F3C6C9;}
+  .testimonials h2{font-size:2.2rem;margin-top:12px;color:var(--white);}
+  .t-grid{
+    margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+    max-width:1080px;margin-left:auto;margin-right:auto;
+  }
+  .t-card .avatar{
+    width:70px;height:70px;border-radius:50%;margin:0 auto 16px;
+    background:var(--white);color:var(--red);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.3rem;
+    font-family:'Poppins';
+  }
+  .t-card h3{font-size:1rem;color:var(--white);font-weight:700;}
+  .t-card p{margin-top:10px;font-size:0.88rem;line-height:1.6;opacity:0.92;font-weight:500;}
+  .t-card .stars{margin-top:14px;color:var(--gold);letter-spacing:2px;font-size:1rem;}
+
+  /* Visit -- split red photo / black info block, matches footer pattern */
+  .visit{display:grid;grid-template-columns:1fr 1fr;}
+  .visit-photo{min-height:440px;background:var(--ink);}
+  .visit-photo img{width:100%;height:100%;min-height:440px;object-fit:cover;}
+  .visit-info{background:var(--ink);color:var(--cream);padding:64px 52px;}
+  .visit-info h3{
+    font-size:0.78rem;text-transform:uppercase;letter-spacing:0.12em;color:#D8A9AD;font-weight:700;margin-bottom:10px;
+  }
+  .visit-block{margin-bottom:32px;}
+  .visit-block:last-child{margin-bottom:0;}
+  .visit-block p, .visit-block a{font-size:0.98rem;line-height:1.7;font-weight:500;}
+  .visit-block a{text-decoration:underline;text-underline-offset:3px;}
+  .visit-block a:hover{color:#F0AC1B;}
+  .social-row{display:flex;gap:16px;flex-wrap:wrap;}
+
+  /* Sticky mobile CTA */
+  .mobile-cta{
+    display:none;position:fixed;bottom:0;left:0;right:0;z-index:70;
+    background:var(--white);border-top:1px solid var(--line);
+    padding:10px 16px;gap:10px;
+    box-shadow:0 -6px 20px rgba(0,0,0,0.08);
+  }
+  .mobile-cta .pill{flex:1;}
+  @media (max-width:640px){ .mobile-cta{display:flex;} }
+
+  footer{text-align:center;padding:30px 24px 90px;color:var(--ink);opacity:0.55;font-size:0.82rem;background:var(--cream);}
+  footer .disclosure{max-width:640px;margin:6px auto 0;font-size:0.76rem;}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;text-align:center;}
+    .hero .sub{margin-left:auto;margin-right:auto;}
+    .hero .cta-row{justify-content:center;}
+    .hero-photo-wrap{order:-1;}
+    .story-grid{grid-template-columns:1fr;}
+    .story-photo{min-height:280px;}
+    .story-photo img{min-height:280px;}
+    .story-text{padding:48px 28px;text-align:center;align-items:center;}
+    .story-text p{margin-left:auto;margin-right:auto;}
+    .story-text .pill{margin-left:auto;margin-right:auto;}
+    .offer-cards{grid-template-columns:1fr;max-width:340px;}
+    .t-grid{grid-template-columns:1fr;max-width:340px;}
+    .menu-grid{grid-template-columns:1fr;}
+    .visit{grid-template-columns:1fr;}
+    .visit-photo{min-height:260px;}
+    .visit-photo img{min-height:260px;}
+    .visit-info{padding:48px 28px;}
+  }
+  @media (max-width:480px){
+    .hero h1{font-size:2.4rem;}
+    .hero{padding:40px 20px 56px;}
+    .story-text h2, .offer h2, .menu-section h2, .testimonials h2{font-size:1.7rem;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#top">
+      <img src="https://wasstraatwinsum.nl/wordpress/wp-content/uploads/2024/10/Logo_liesjeslunchroom.png" alt="Liesjes Lunchroom logo">
+    </a>
+    <nav class="links">
+      <a href="#over-ons">Over ons</a>
+      <a href="#menu">Menukaart</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#bezoek">Bezoek ons</a>
+    </nav>
+    <a class="pill pill-red pill-sm" href="tel:+31595444196">Bel 0595 – 444 196</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow" style="color:var(--red);">Winsum · Het Aanleg 4</div>
+        <h1><span>Liesjes</span><span>Lunchroom</span></h1>
+        <p class="sub">Verse broodjes, warme snacks en huisgemaakte lekkernijen — bij Wasstraat Winsum.</p>
+        <div class="cta-row">
+          <a class="pill pill-red" href="#menu">Bekijk de menukaart</a>
+          <a class="pill pill-black" href="https://www.google.com/maps/search/?api=1&query=Het+Aanleg+4+Winsum" target="_blank" rel="noopener">Route plannen</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <div class="hero-photo">
+          <img src="https://wasstraatwinsum.nl/wordpress/wp-content/uploads/2025/02/2025LiesjesLunchroom01.jpg" alt="Interieur van Liesjes Lunchroom in Winsum">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="over-ons">
+    <div class="story-grid">
+      <div class="story-photo">
+        <img src="https://wasstraatwinsum.nl/wordpress/wp-content/uploads/2025/02/2025LiesjesLunchroom02.jpg" alt="Liesjes Lunchroom sfeerfoto">
+      </div>
+      <div class="story-text">
+        <div class="eyebrow">Het verhaal</div>
+        <h2>Van wasstraat tot lunchplek</h2>
+        <p>Bryan &amp; Annelies Visscher namen Wasstraat Winsum op 1 januari 2024 over en openden begin 2025 Liesjes Lunchroom achterin de wasstraat — een plek voor een vers broodje terwijl je auto gewassen wordt, of gewoon omdat je zin hebt in iets lekkers in Winsum.</p>
+        <a class="pill pill-black" href="#bezoek">Locatie &amp; openingstijden</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="offer">
+    <div class="eyebrow">Wat we bieden</div>
+    <h2>Populaire keuzes</h2>
+    <p class="lede">Van verse broodjes tot een warme snack tussendoor — hier zijn een paar favorieten.</p>
+    <div class="offer-cards">
+      <div class="offer-card">
+        <div class="thumb"><img src="https://wasstraatwinsum.nl/wordpress/wp-content/uploads/2024/12/drogeworsten.png" alt="Droge worst"></div>
+        <h3>Droge worst</h3>
+        <p>€4,45 per stuk · 3 voor €12,00</p>
+      </div>
+      <div class="offer-card">
+        <div class="thumb textonly">TS</div>
+        <h3>Huisgemaakte tonijnsalade</h3>
+        <p>Op een vers broodje · €7,50</p>
+      </div>
+      <div class="offer-card">
+        <div class="thumb textonly">MW</div>
+        <h3>Maaltijdsalade Winsum</h3>
+        <p>Gemengde sla, honing-mosterddressing · €6,95</p>
+      </div>
+    </div>
+    <a class="pill pill-red" href="#menu">Volledige menukaart</a>
+  </section>
+
+  <section class="menu-section" id="menu">
+    <div class="menu-inner">
+      <div class="section-head">
+        <div class="eyebrow">Menukaart</div>
+        <h2>Wat we serveren</h2>
+      </div>
+      <div class="menu-grid">
+
+        <div class="menu-card">
+          <h3>Warme dranken</h3>
+          <div class="menu-item"><span class="name">Koffie</span><span class="price">€2,50</span></div>
+          <div class="menu-item"><span class="name">Thee</span><span class="price">€2,30</span></div>
+          <div class="menu-item"><span class="name">Cappuccino</span><span class="price">€2,95</span></div>
+          <div class="menu-item"><span class="name">Warme chocolademelk</span><span class="price">€3,25</span></div>
+        </div>
+
+        <div class="menu-card">
+          <h3>Koude dranken</h3>
+          <div class="menu-item"><span class="name">Cola / Cola zero / Cassis / 7-up / Sinas</span><span class="price">€3,00</span></div>
+          <div class="menu-item"><span class="name">IJsthee (perzik / groen)</span><span class="price">€3,00</span></div>
+          <div class="menu-item"><span class="name">Spa (rood/blauw)</span><span class="price">€2,50</span></div>
+          <div class="menu-item"><span class="name">Tonic</span><span class="price">€2,75</span></div>
+          <div class="menu-item"><span class="name">Vruchtensap</span><span class="price">€2,75</span></div>
+          <div class="menu-item"><span class="name">Fristi / chocomel</span><span class="price">€2,95</span></div>
+          <div class="menu-item"><span class="name">Capri-Sun</span><span class="price">€2,00</span></div>
+          <div class="menu-item"><span class="name">Red Bull / Monster</span><span class="price">€3,25 – €3,50</span></div>
+          <div class="menu-item"><span class="name">Fernandes</span><span class="price">€2,95</span></div>
+        </div>
+
+        <div class="menu-card">
+          <h3>Gebak &amp; hartige snacks</h3>
+          <div class="menu-item"><span class="name">Saucijzenbroodje</span><span class="price">€3,25</span></div>
+          <div class="menu-item"><span class="name">Frikandelbroodje</span><span class="price">€3,25</span></div>
+          <div class="menu-item"><span class="name">Kaasbroodje</span><span class="price">€3,25</span></div>
+          <div class="menu-item"><span class="name">Droge worst</span><span class="price">€4,45 / 3 voor €12,00</span></div>
+        </div>
+
+        <div class="menu-card">
+          <h3>Koude broodjes</h3>
+          <div class="menu-item"><span class="name">Broodje gezond (groente &amp; ei)</span><span class="price">€5,99</span></div>
+          <div class="menu-item"><span class="name">Filet Americain</span><span class="price">€5,99</span></div>
+          <div class="menu-item"><span class="name">Eiersalade met bacon</span><span class="price">€6,50</span></div>
+          <div class="menu-item"><span class="name">Roomkaas &amp; ham</span><span class="price">€6,50</span></div>
+          <div class="menu-item"><span class="name">Brie</span><span class="price">€6,99</span></div>
+          <div class="menu-item"><span class="name">Huisgemaakte tonijnsalade</span><span class="price">€7,50</span></div>
+          <div class="menu-item"><span class="name">Chicken curry</span><span class="price">€5,75</span></div>
+          <div class="menu-item"><span class="name">Carpaccio</span><span class="price">€7,25</span></div>
+          <div class="menu-item"><span class="name">Gerookte zalm</span><span class="price">€8,25</span></div>
+          <div class="menu-item"><span class="name">Zalm &amp; roomkaas</span><span class="price">€8,99</span></div>
+        </div>
+
+        <div class="menu-card">
+          <h3>Warme kaart</h3>
+          <div class="menu-item"><span class="name">Hot dog</span><span class="price">€3,50 – €4,75</span></div>
+          <div class="menu-item"><span class="name">Frikandel / gehaktbal</span><span class="price">€4,25</span></div>
+          <div class="menu-item"><span class="name">Burger</span><span class="price">€8,50</span></div>
+          <div class="menu-item"><span class="name">Mac Lies</span><span class="price">€7,99</span></div>
+          <div class="menu-item"><span class="name">Panini</span><span class="price">€4,50 – €5,25</span></div>
+        </div>
+
+        <div class="menu-card">
+          <h3>Maaltijdsalades</h3>
+          <div class="menu-item"><span class="name">Winsum (gemengde sla, honing-mosterd)</span><span class="price">€6,95</span></div>
+          <div class="menu-item"><span class="name">Tonijn</span><span class="price">€7,95</span></div>
+          <div class="menu-item"><span class="name">Italy (feta)</span><span class="price">€6,95</span></div>
+        </div>
+
+        <div class="menu-card">
+          <h3>Kids menu</h3>
+          <div class="menu-item"><span class="name">Tosti's (dubbel kaas / ham-kaas / salami-kaas)</span><span class="price">€3,75</span></div>
+          <div class="menu-item"><span class="name">Hot dog (met saus naar keuze)</span><span class="price">€3,50</span></div>
+          <div class="menu-item"><span class="name">Poffertjes (roomboter &amp; poedersuiker)</span><span class="price">€3,75</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" id="reviews">
+    <div class="eyebrow">4,3 / 5 · 7 beoordelingen</div>
+    <h2>Wat klanten zeggen</h2>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="avatar">KB</div>
+        <h3>Karin B.</h3>
+        <p>"Superlekker! Genoten van een heerlijke lunch."</p>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="t-card">
+        <div class="avatar">IV</div>
+        <h3>Ina V.</h3>
+        <p>"Al vaker een heerlijk broodje gegeten! De tonijn maaltijdsalade is zeker aan te bevelen — je kan er lekker relaxt eten en het personeel is erg vriendelijk."</p>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="t-card">
+        <div class="avatar">MR</div>
+        <h3>Maike R.</h3>
+        <p>"Heerlijk geluncht. Alles was goed verzorgd, fijn personeel en heerlijk relaxte zitbanken! Wij komen zeker gauw terug!"</p>
+        <div class="stars">★★★★★</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="visit" id="bezoek">
+    <div class="visit-photo">
+      <img src="https://wasstraatwinsum.nl/wordpress/wp-content/uploads/2025/02/2025LiesjesLunchroom04.jpg" alt="Liesjes Lunchroom foto">
+    </div>
+    <div class="visit-info">
+      <div class="visit-block">
+        <h3>Openingstijden</h3>
+        <p>Maandag – zaterdag: 10:00 – 16:00<br>Zondag &amp; feestdagen: gesloten</p>
+      </div>
+      <div class="visit-block">
+        <h3>Locatie</h3>
+        <p>Het Aanleg 4<br>9951 SJ Winsum</p>
+      </div>
+      <div class="visit-block">
+        <h3>Contact</h3>
+        <p>
+          <a href="tel:+31595444196">0595 – 444 196</a><br>
+          <a href="tel:+31636292215">06 – 36 29 22 15</a><br>
+          <a href="mailto:wasstraatwinsum@gmail.com">wasstraatwinsum@gmail.com</a>
+        </p>
+      </div>
+      <div class="visit-block">
+        <h3>Volg ons</h3>
+        <div class="social-row">
+          <a href="https://www.facebook.com/profile.php?id=61560477561793" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/liesjes_lunchroom/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="mobile-cta">
+  <a class="pill pill-black pill-sm" href="https://www.google.com/maps/search/?api=1&query=Het+Aanleg+4+Winsum" target="_blank" rel="noopener">Route</a>
+  <a class="pill pill-red pill-sm" href="tel:+31595444196">Bel 0595 – 444 196</a>
+</div>
+
+<footer>
+  <div>Liesjes Lunchroom · Het Aanleg 4, Winsum</div>
+  <div class="disclosure">Demo-website opgebouwd met openbare gegevens en foto's van wasstraatwinsum.nl — nog niet live. Stijl (kleuren, typografie, indeling) is aangepast van een aangeleverde huisstijl-richtlijn; kloppen prijzen of tijden niet meer? Laat het ons weten.</div>
+</footer>
+
+</body>
+</html>
